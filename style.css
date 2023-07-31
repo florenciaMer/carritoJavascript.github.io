@@ -1,0 +1,99 @@
+body{
+    width: 90%;
+    margin: 3%;
+}
+
+.cart{
+    font-size: 40px;
+}
+
+.icon{
+    margin-right: 2px;
+    color: blue;
+    padding: 2px;
+}
+
+
+.icon:hover{
+    color: red;
+}
+
+.cart-outline{
+	width: 250px
+}
+/* boton de agregar producto */
+.float{
+	position:fixed;
+	width:60px;
+	height:60px;
+	bottom:80px;
+	right:40px;
+	background-color:#25d366;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+    font-size:30px;
+	box-shadow: 2px 2px 3px #999;
+    z-index:100;
+}
+.float:hover {
+	text-decoration: none;
+	color: white;
+    background-color: rgb(49, 140, 74);
+}
+
+.my-float{
+	margin-top:16px;
+}
+.ion-icon{
+    margin-top: 24%;
+}
+/* validacion del form create productos */
+.error{
+	background-color: #ebb5b5;
+	display: none;
+	margin-top:1%;
+}
+
+.btnInfo{
+	display: none;
+	opacity: 0.7;
+}
+#btnInfoAddCart{
+	display: none;
+	position: fixed;
+	z-index: 1;
+}
+
+/* fin boton de agregar producto */
+
+/* dark mode*/
+
+*{
+    margin: 0;
+    border: 0;
+    box-sizing: border-box;
+}
+
+.darkMode{
+    background-color: black;
+}
+
+
+.fecha{
+	display: flex;
+    justify-content: end;
+}
+.w-70{
+	width: 70%;
+}
+/* fin dark mode */
+
+.divCarrito{
+	align-items: center;
+    display: flex;
+    flex-direction: column
+}
+#botonFinalizarCompra{
+	margin-bottom: 5px;
+}

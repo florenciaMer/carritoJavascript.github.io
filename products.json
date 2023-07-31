@@ -1,0 +1,11 @@
+
+
+[
+ { "id":1,"categoria":"cremas", "nombre":"crema facial de lúpulos y rosa mosqueta","precio": 4250, "cantidad":5, "descripcion":"Un producto ideal para el cuidado de tus rostro","img":"01_crema.jpeg"},
+ { "id":2,"categoria":"cremas", "nombre":"crema corporal crataegus","precio": 4100, "cantidad":6,"descripcion":"Una crema con una suavidad envolvente para tu piel", "img":"02_crema_corporal.jpeg"},
+ { "id":3,"categoria":"ofertas", "nombre":"aceite de lavanda","precio": 1150, "cantidad":3,"descripcion":"Aceite antistress", "img":"03_aceite_lavanda.jpeg"},
+ { "id":4,"categoria":"ofertas", "nombre":"agua de rosas","precio": 1000, "cantidad":3,"descripcion":"Agua para biorelajar el organismo","img": "04_agua_rosas.jpeg"},
+ { "id":5,"categoria":"aromas", "nombre":"desodorante corporal","precio": 3350,"cantidad": 2,"descripcion":"Desodorante corporal y tambien Kit para disfrutar del viaje","img": "05_desodorante.jpeg"},
+ { "id":6,"categoria":"aromas", "nombre":"kit de viaje Jazmin","precio": 2200,"cantidad": 2,"descripcion":"Kit para disfrutar de un viaje esplendido","img": "06_kit_viaje_jazmin.jpeg"},
+ { "id":7,"categoria":"cremas", "nombre":"crema facial anti age","precio": 4600,"cantidad": 3,"descripcion": "Ideal para el paso del tiempo en tu piel","img":"01_crema.jpeg"}
+]
