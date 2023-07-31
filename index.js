@@ -451,6 +451,7 @@ function mostrarCarrito(){
                       }).showToast();
                      let btnFinalizar = document.querySelector('#botonFinalizarCompra')
                      btnFinalizar.innerHTML = ''
+                     document.querySelector('.modal-content')
 
                   }
 
@@ -470,6 +471,7 @@ function mostrarCarrito(){
       console.log("el carrito esta vacio")
       let btnFinalizar = document.querySelector('#botonFinalizarCompra')
       btnFinalizar.style.display = 'none'
+      document.querySelector('.modal-content').style.display = "none"
    }
 
    
