@@ -311,7 +311,7 @@ function borrarProductoPorNombre(){
  }
 
 function mostrarCarrito(){
-   //document.querySelector('.aCart').zIndex = '-5'
+   //document.querySelector('.aCart').style.display = 'none'
    document.getElementById('botonFinalizarCompra').style.display = 'block'
    let eliminarBtn;
    
@@ -338,15 +338,15 @@ function mostrarCarrito(){
             nuevoCarritoTr.innerHTML =
             `
                <li class="text-center list-unstyled"><img src="./img/${itemBusqueda.img}" width="56px"</li>
-               <li class="text-center list-unstyled">${itemBusqueda.nombre}</li>
-               <li class="text-center list-unstyled">$${itemBusqueda.precio}</li>
-               <li class="text-center list-unstyled" id="cantidadCart${itemBusqueda.id}">${itemCarrito.cant}</li>
-               <li class="text-center list-unstyled">$${subtotal}</li>
+               <li class="text-center list-unstyled">Descripcion: ${itemBusqueda.nombre}</li>
+               <li class="text-center list-unstyled">Precio unit: $${itemBusqueda.precio}</li>
+               <li class="text-center list-unstyled" id="cantidadCart">Cantidad: ${itemCarrito.cant}</li>
+               <li class="text-center list-unstyled">Subtotal: $${subtotal}</li>
                <li class="text-center list-unstyled">
                   <button class= "btn btn-success" id="botonSumarUnidad${itemBusqueda.id}"><i class=""></i>+1</button>
                   <button class= "btn btn-danger" id="botonRestarUnidad${itemBusqueda.id}"><i class=""></i>-1</button> 
                   <button type="button" id="eliminarCarrito${itemBusqueda.id}" class="btn btn-danger"><ion-icon name="trash"></ion-icon></button></button></li>
-              
+              <hr/>
              
                `
                total += subtotal
