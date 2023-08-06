@@ -1,0 +1,220 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <!-- toastify -->
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+
+    
+    <link rel="stylesheet" href="style.css">
+    <title>4ta entrega Merzario Florencia</title>
+
+</head>
+<body onload="instanciacion()">
+    <form id="altaProducto"></form>
+    <div class="fecha"></div>
+     <!--DARK MODE-->
+     <div class="container m-4">
+        <div class="row">
+            <div class="col-3">
+                <button id="botonDarkMode" class="btn btn-dark">Dark</button>
+            </div>
+            <div class="col-3">
+                <button id="botonLightMode" class="btn btn-light">Light</button>
+            </div>
+            <div class="col-3">
+                <a href="./productos.html" class="btn btn-light">Productos</a>
+            </div>
+         </div>
+      </div>
+    <!-- <button class="btn btn-primary catalogoDark" id="catalogo">Mostrar Catálogo</button>
+    <button class="btn btn-primary d-none" id="ocultarCatalogo">Ocultar Catálogo</button> -->
+    <div class="row d-flex align-items-center justify-content-around">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light d-flex justify-content-around m-2">
+            <a class="navbar-brand" href="#"><img src="img/logo.jpg" width="150px"/></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                    <li class="nav-item active">
+                    <a class="nav-link" href="index.html">Inicio <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Categorías
+                        </a>
+                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <p class="dropdown-item" onclick=buscarPorCategoria(aromas) >Aromas</p>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item"  onclick=buscarPorCategoria(cremas)>Cremas</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" onclick=buscarPorCategoria(ofertas)>Ofertas</a>
+                        </div>
+                    </li>
+                    <!-- <li class="nav-item">
+                    <a class="nav-link" href="./contacto.html">Contacto</a>
+                    </li>   -->
+                </ul>
+            </div>
+            <form class="form-inline my-2 my-lg-0" id="searchSelected">
+                <input 
+                    class="form-control mr-sm-2" type="search"
+                    placeholder=" Ingresa el nombre" 
+                    aria-label="Search"
+                    id="inputSearch" 
+                >
+                <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar producto</button> -->
+            </form>
+            <a class="aCart" onclick="$('#modal').modal({ show:true }),mostrarCarrito()">
+                <ion-icon class="cart" name="cart-outline" id="cartNav"></ion-icon>
+            </a> 
+            </nav>
+
+                <!-- <a href="./det_carrito.html"><ion-icon class="cart white" name="cart-outline"></ion-icon></a> -->
+            
+        </div>
+        
+        <main class="row d-flex m-5">
+
+         <button type="button" id="btnInfoAddCart"></button>
+         <form class="form-inline my-4" id="orden">
+        <label class="form-control labelOrden" exampleFormControlSelect1>Buscar productos en orden</label>
+        <select class="form-control mx-2 criterioDark" id="criterio">
+            <option value="menorMayor">De menor a Mayor precio</option>
+            <option value="mayorMenor">De mayor a Menor precio</option>
+            <option value="ascendente">Por nombre ascendente</option>
+        </select>
+        </form>
+        
+        <div class="container">
+        <section id="busquedasNav"></section>
+        <section id="listar">
+            <table class="table"></table>
+        </section>
+        <div id="productos" class="row"> 
+        </div>
+    </div>
+
+    
+    <!-- <a onclick="$('#modal').modal({ show:true });" class="float" target="_blank"  style="z-index: 1900">
+        <ion-icon class="ion-icon" name="add-circle-outline"></ion-icon>
+    </a> -->
+    
+
+    <!-- <section class="agregarProducto" id="agregarProducto"> -->
+    <!-- Loader-->
+
+    
+    <h3 id="loaderTexto" class="d-flex text-center justify-content-center">Cargando...</h3>
+    <div id="loader" class="d-flex justify-content-center">
+      <div class="spinner-border" role="status">
+      </div>
+    </div>
+  
+     <!--************************** start modal ******************-->
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+     <div class="modal-dialog" role="document">
+        <div class="modal-content modalDark">
+            <div class="modal-header">
+                <h5 class="modal-title">Detalle de carrito</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button> 
+            </div>
+
+    <!-- detalle carrito -->
+
+     
+        <button type="button"  id="btnInfoAddCart"></button>
+        <form id="editarProducto" class="m-2"></form>
+        <button type="button" class="btnInfo d-none"></button>
+        <section class="container divCarrito">
+            <div id="carrito" class="row"> 
+                <table class="tableCarrito"></table>
+            </div>
+            <div class="divTotal w-50"></div>
+         
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">Cerrar</span>
+                </button> 
+                <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+            </div>
+        </section>
+        <div class="white"></div>
+    
+    <!-- fin detalle carrito -->
+            
+        </div>
+    </div>
+</div>
+        
+         <!--************************** fin modal ******************-->
+    <!-- seleccion de cantidad para el producto -->
+
+    <!-- fin seleccion cantidad para el producto -->
+    <section>
+    
+
+    <!-- Button trigger modal -->
+</main>
+
+<footer class="border-top">
+    <div class="net d-flex justify-content-around m-4">   
+        <ul class="contact"> 
+            <p>Medios de pago</p>
+            <li class="list-unstyled"><img src="./img/american.png" width="45px"></li>
+            <li class="list-unstyled"><img src="./img/visa.png" width="45px"></li>
+            <li class="list-unstyled"><img src="./img/naranja.png" width="45px"></li>
+            <li class="list-unstyled"><img src="./img/maestro.png" width="45px"></li>
+        </ul>
+        <ul class="contact"> 
+            <p>Contacto</p>
+            <li><i class="fa-solid fa-envelope"></i>flor@gmail.com</li>
+            <li><i class="fa-solid fa-phone"></i>54 9 11 123-4567</li>
+            <li><i class="fa-solid fa-location-dot"></i>Avenida Juan de Garay 32</li>
+        </ul>
+        <ul class="nets">
+            <li class="list-unstyled"><ion-icon name="logo-facebook" class="icon white"></ion-icon><a href="https://www.facebook.com/profile.php?id=100015311762742" class="white"><i class="fa-brands fa-facebook"></i>mi facebook</a></li>
+            <li class="list-unstyled"><ion-icon name="logo-instagram" class="icon white"></ion-icon><a href="https://www.instagram.com/florenciamerzario/" class="white"><i class="fa-brands fa-instagram"></i></i>mi instagram</a></li>
+        </ul> 
+    </div>
+    <form id="editarProducto"></form>
+
+   
+</footer>
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+
+    <!-- //toastify -->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+<!-- luxon -->
+<script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+</body>
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/luxon@2.3.0/build/global/luxon.min.js"></script>
+<script src="./variables.js"></script>
+<script src="./class.js"></script>
+<script src="./index.js"> </script>
+<script src="./darkMode.js"></script>
+<script src="./loader.js"></script>
+<script src="./carrito.js"></script>
+<!--Luxon--> 
+
+
+</html>
