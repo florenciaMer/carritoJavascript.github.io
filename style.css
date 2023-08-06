@@ -97,3 +97,10 @@ body{
 #botonFinalizarCompra{
 	margin-bottom: 5px;
 }
+
+.oculto{
+	display: none;
+	
+}
+
+

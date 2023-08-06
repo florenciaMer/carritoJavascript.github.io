@@ -10,9 +10,9 @@ let cremas = "cremas"
 let ofertas = "ofertas"
 let regex = /[0-9]+/;
 let divTotal = document.querySelector('.divTotal')
-let btnInfo = document.querySelector(`.btnInfo`)
+/*let btnInfo = document.querySelector(`.btnInfo`)
     btnInfo.style.display = "block"
-    btnInfo.className = "btn btn-success"
+    btnInfo.className = "btn btn-success"*/ 
 let tableCarrito = document.querySelector('.tableCarrito')
 
 let total = 0;

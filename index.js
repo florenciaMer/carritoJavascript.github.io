@@ -103,6 +103,9 @@ function verCatalogo(array){
 }*/
 //let productosDiv = document.getElementById("productos")
 function mostrarCatalogo(array){
+     
+      document.querySelector('.aCart').style.visibility = 'visible'
+
    localStorage.getItem("modoOscuro") == true ? card.style.color = "black" :''
    tableCarrito.innerHTML=''
    productosDiv.innerHTML=''
@@ -156,7 +159,9 @@ function mostrarCatalogo(array){
       btnAddCart.addEventListener("click", ()=>{
          btnAddCart.style.display = "none"
       })
-    }
+   }
+
+  document.querySelector('.aCart').style.visibility = 'visible!important'
  }
 /*let catalogo = document.querySelector(`#catalogo`)
 catalogo.addEventListener(`click`, () => {
@@ -306,6 +311,8 @@ function borrarProductoPorNombre(){
  }
 
 function mostrarCarrito(){
+   //document.querySelector('.aCart').zIndex = '-5'
+   document.getElementById('botonFinalizarCompra').style.display = 'block'
    let eliminarBtn;
    
    tableCarrito.innerHTML = ''
@@ -320,19 +327,16 @@ function mostrarCarrito(){
       for(let itemCarrito of almacenado ){
          let nuevoCarritoTr = document.createElement("tr")
          // busco los datos del producto con filter
-         console.log('array productos')
-         console.log(arrayProd)
+       
          busqueda = arrayProd.filter(
             (producto) => producto.id === itemCarrito.id 
          )
          //muestro los datos del producto
-         console.log('busqueda')
-         console.log(busqueda)
+        
          for(let itemBusqueda of busqueda){
             let subtotal = parseInt(itemBusqueda.precio)* parseInt(itemCarrito.cant)
             nuevoCarritoTr.innerHTML =
             `
-            <ul>
                <li class="text-center list-unstyled"><img src="./img/${itemBusqueda.img}" width="56px"</li>
                <li class="text-center list-unstyled">${itemBusqueda.nombre}</li>
                <li class="text-center list-unstyled">$${itemBusqueda.precio}</li>
@@ -342,8 +346,8 @@ function mostrarCarrito(){
                   <button class= "btn btn-success" id="botonSumarUnidad${itemBusqueda.id}"><i class=""></i>+1</button>
                   <button class= "btn btn-danger" id="botonRestarUnidad${itemBusqueda.id}"><i class=""></i>-1</button> 
                   <button type="button" id="eliminarCarrito${itemBusqueda.id}" class="btn btn-danger"><ion-icon name="trash"></ion-icon></button></button></li>
-               <hr>
-               </ul>
+              
+             
                `
                total += subtotal
                
@@ -359,7 +363,7 @@ function mostrarCarrito(){
                <p class="rounded m-0">Total:</p>
                <p class="rounded m-0">$${total}</p>
                </div>
-               <hr>
+              
                `
                //evento para sumar una unidad al carro
                document.getElementById(`botonSumarUnidad${itemBusqueda.id}`).addEventListener("click", () =>{
@@ -419,8 +423,10 @@ function mostrarCarrito(){
                   //let nombre = almacenado[indice].nombre
                   almacenado.splice(indice, 1);
                   nombre = itemBusqueda.nombre
-                  btnAddCart.style.display = "block"
+                  btnAddCart.style.display = "none"
                   btnAddCart.className = "btn btn-success"
+                  
+                  
                   if(almacenado.length >0){
                      const enJSON  = JSON.stringify(almacenado) //lo convierto a JSON
                      localStorage.setItem("carrito", enJSON)
@@ -449,35 +455,44 @@ function mostrarCarrito(){
                           background: "green",
                         }
                       }).showToast();
-                     let btnFinalizar = document.querySelector('#botonFinalizarCompra')
-                     btnFinalizar.innerHTML = ''
-                     document.querySelector('.modal-content')
-
+                     
+                     document.getElementById('botonFinalizarCompra').style.display = 'none'
+                     tableCarrito.innerHTML = `no hay productos en el carrito
+                     `
+                    
                   }
 
             })
        }
      }
    }else{
-
+      let modalElement = document.querySelector("#modal");
+      
+      modalElement.classList.remove("show");
+      modalElement.classList.remove("modal-header");
+      modalElement.classList.remove("modal-open");
+      modalElement.classList.remove("modal-title");
+      modalElement.setAttribute('aria-hidden', 'true');
+      
       Toastify({
-         text: `El carrito está vacío!!`,
+         text: `El carrito está vacio !!`,
          className: "info",
          style: {
            background: "green",
          }
        }).showToast();
-       
-      console.log("el carrito esta vacio")
-      let btnFinalizar = document.querySelector('#botonFinalizarCompra')
-      btnFinalizar.style.display = 'none'
-      document.querySelector('.modal-content').style.display = "none"
+     // let btnFinalizar = document.querySelector('#botonFinalizarCompra')
+      tableCarrito.innerHTML = `no hay productos en el carrito
+      `
+      document.getElementById('botonFinalizarCompra').style.display = 'none'
+      
    }
-
-   
+  
+  
 }
-// modulo de administracion de productos
 
+
+// modulo de administracion de productos
 
 //listado de productos en formato lista para administrar
 function verProductos(){

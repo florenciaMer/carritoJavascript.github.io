@@ -30,6 +30,7 @@ class Producto {
  //Instanciación de objetos: 
  const instanciacion = async () =>{
  //function instanciacion(){
+   document.querySelector('.aCart').style.visibility = 'hidden'
 if(arrayProd.length == 0){
 
 const res = await fetch("products.json")

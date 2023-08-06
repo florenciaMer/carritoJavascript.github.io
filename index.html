@@ -72,11 +72,11 @@
                 >
                 <!-- <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Buscar producto</button> -->
             </form>
+            <a class="aCart" onclick="$('#modal').modal({ show:true }),mostrarCarrito();"style="z-index: 1900">
+                <ion-icon class="cart" name="cart-outline" id="cartNav"></ion-icon>
+            </a> 
             </nav>
-           
-                <a onclick="$('#modal').modal({ show:true }),mostrarCarrito();"style="z-index: 1900">
-                    <ion-icon class="cart white" name="cart-outline"></ion-icon>
-                </a> 
+
                 <!-- <a href="./det_carrito.html"><ion-icon class="cart white" name="cart-outline"></ion-icon></a> -->
             
         </div>
@@ -119,31 +119,37 @@
     </div>
   
      <!--************************** start modal ******************-->
-<div class="modal" tabindex="-1" role="dialog" id="modal">
-    <div class="modal-dialog" role="document">
+    <div class="modal" tabindex="-1" role="dialog" id="modal">
+     <div class="modal-dialog" role="document">
         <div class="modal-content modalDark">
             <div class="modal-header">
                 <h5 class="modal-title">Detalle de carrito</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
-                </button>
+                </button> 
             </div>
+
     <!-- detalle carrito -->
-    <section>
+
      
-        <button type="button" id="btnInfoAddCart"></button>
-        <form id="editarProducto"></form>
-        <button type="button" class="btnInfo"></button>
+        <button type="button"  id="btnInfoAddCart"></button>
+        <form id="editarProducto" class="m-2"></form>
+        <button type="button" class="btnInfo d-none"></button>
         <section class="container divCarrito">
             <div id="carrito" class="row"> 
                 <table class="tableCarrito"></table>
             </div>
             <div class="divTotal w-50"></div>
          
-            <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+            <div class="modal-footer">
+                <button type="button" class=" btn btn-secondary" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">Cerrar</span>
+                </button> 
+                <button type="button" data-bs-dismiss="modal" class="btn btn-success" id="botonFinalizarCompra">Finalizar Compra</button>
+            </div>
         </section>
         <div class="white"></div>
-    </section>
+    
     <!-- fin detalle carrito -->
             
         </div>
